@@ -1,0 +1,10 @@
+# Character files contain character descriptions, preferences, traits, habits, props unique to that 
+# particular character (does this character have a quizzing glass through which he stares at people 
+# he finds inferior? an umbrella she unfurls in the house?). Character-specific dialogue also goes 
+# here: anything that character might have to say about his backstory, amusing incidents that 
+# recently happened to him, etc. In the currently available content, for instance, the character of
+#  Lucy has certain flirtation actions that are unique to her, but that create openings for 
+# relationship change that use the standard underlying mechanisms for changing relationship state. 
+# This means that other characters who have unique strategies for responding to flirtation can react 
+# appropriately, even if the two characters have not explicitly been coded to interact with one 
+# another.

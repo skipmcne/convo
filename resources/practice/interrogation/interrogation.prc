@@ -1,4 +1,4 @@
-# social practice comes with a set of norms: things the participants are expected to do.
+; social practice comes with a set of norms: things the participants are expected to do.
 
 
 process.interrogate.X(agent).Y(agent)

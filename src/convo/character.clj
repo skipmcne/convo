@@ -1,2 +1,2 @@
-# action overrides
-# emotional state
+; action overrides
+; emotional state

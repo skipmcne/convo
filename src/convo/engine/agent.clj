@@ -1,7 +1,13 @@
+(ns convo.engine.agent
+ "agent"
+ )
+
+(defrecord Agent {})
+
 ; update agents ideal of the world 
-(defn observeFacts [agent facts]
+(defn observeFacts [Agent facts]
 	)
 
 ; pick an action from the list of actions to do 
-(defn filterActions [agent actions]
+(defn filterActions [Agent actions]
 	)

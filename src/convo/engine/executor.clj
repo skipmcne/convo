@@ -1,4 +1,12 @@
-
+(ns convo.engine
+ "engine-handles simloop... Player hooks TBD"
+  (:require [engine.action :as action]
+  			[engine.narrator :as narrator]
+  			[engine.executor :as executor]
+  			[engine.agent :as agent]
+  			[engine.practice :as practice]
+  			)
+ )
 ;;;;;;;
 ; Processes -> provide -> Actions
 ; Actions -> are Performed by -> Agents

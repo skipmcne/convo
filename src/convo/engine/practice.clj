@@ -44,6 +44,9 @@
 ; sentences can be that relationships are updated, new beliefs or desires are formed,
 ; old practices are deleted or new practices are spawned.
 
-
+(ns convo.engine.practice
+ "practice"
+ )
+;;;;;;;
 ; given a practice and a world, determine return valid actions
 (defn getActions [practice fact])

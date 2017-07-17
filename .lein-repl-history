@@ -1,0 +1,76 @@
+source main
+s
+source convo.core.main
+ls
+(require '[clojure.spec.alpha :as s])
+exit
+(require '[clojure.spec.alpha :as s])
+(s/def ::agent)
+(s/def ::agent string?)
+(s/def ::agents (s/keys :req[::agent])
+)
+(s/valid? ::agent {"robert"}0
+)
+(s/valid? ::agent {"robert"})
+(s/valid? ::agent {:name "robert"})
+(s/valid? ::agent {:id :robert :name "robert"})
+(s/def amusement int?)
+(s/def ::emotions #{:amusement :contempt :contentment :embarrassment :excitement :guilt :pride :relief :satisfaction :pleasure :shame})
+(s/def ::emotion { :emotions :pos-int-lt100})
+(s/conform ::emotion {:amusement 30}
+)
+(s/valid ::emotions :amusement}
+(s/valid ::emotions :amusement)
+(s/valid? ::emotions :amusement)
+(s/valid? ::pos-int-lt100 :amusement)
+(s/def :pos-int-lt100 (s/and int? #(> % 0) #(< % 101)))
+(s/def :pos-int (s/and int? #(> % 0)))
+(s/def ::pos-int-lt100 (s/and int? #(> % 0) #(< % 101)))
+(s/conform ::emotion {:amusement 30}
+)
+(s/def ::emotion #{ ::emotions ::pos-int-lt100})
+(s/conform ::emotion {:amusement 30}
+)
+(s/conform ::emotion {:amusement 30})
+(s/explain (s/conform ::emotion {:amusement 30}))
+(s/explain ::emotion {:amusement 30})
+(s/explain ::emotions :amusement)
+(s/explain ::pos-int-lt100 30)
+(s/explain ::emotion {:amusement 30})
+(s/explain ::emotion )
+(s/explain ::emotion {})
+(s/explain ::emotion #{:amusement 30})
+(s/explain ::emotion (:amusement 30))
+(s/def ::emotion (s/keys :req [::emotions ::pos-intlt100]))
+(s/explain ::emotion (:amusement 30))
+(s/explain ::emotion {:amusement 30})
+(s/explain ::emotion {::emotions :amusement ::pos-int-lt100 30})
+expand defmacro
+(macroexpand defmacro)
+(macroexpand defn)
+(macroexpand ->)
+macroexpand 
+expand
+macroexpand defn
+macroexpand def
+explain defn
+(defmacro process [agents action preconditions postconditions]
+(if ~preconditions
+(do ~action
+~postconditions)))
+(process (X Y) "Greet" true (print "X says hello to Y"))
+(process (X Y) (print "Greet") true (print "X says hello to Y"))
+print "hi"
+(print "hi")
+(println "helloi")
+(println "hello")
+`(println "hello")
+`(println "hello  " ~name)
+eval `(println "hello  " ~name)
+def name "tom"
+eval `(println "hello  " ~name)
+let name "tom"
+name
+(name)
+(let name tom)
+(let name "tom")

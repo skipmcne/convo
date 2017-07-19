@@ -66,7 +66,7 @@
 
 (defn defBelief [topicId factCategory statement conf]
 	(let [b1 {::topic topicId ::fact factCategory ::stmt statement ::confidence conf}]
-		(if (spec/valid? ::belief b1)
+		(if (spec/valid? ::kbelief b1)
 			b1
 			nil
 			)))
@@ -88,10 +88,10 @@
 		)
 	)
 )
-(defn addbelief [topicId factCategory statement conf]
+(defn addbelief [actor topicId factCategory statement conf]
 	(let [kp (defBelief topic factCategory statement conf)]
 		(if (!= nil kp)
-		; save it somewhere?
+			(assoc-in (get ::knowlege ::kbelief) kp); save it somewhere?
 		)
 	)
 )

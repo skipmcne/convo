@@ -46,7 +46,19 @@
 
 (ns convo.engine.practice
  "practice"
+ (:require [clojure.spec.alpha :as spec])
+ (:require [convo.engine.agent :as agent])
  )
 ;;;;;;;
 ; given a practice and a world, determine return valid actions
 (defn getActions [practice fact])
+
+
+(spec/def ::agents (spec/keys :req [::agent/agent])
+(spec/def ::action)
+(spec/def ::preonditiions)
+
+
+(spec/def ::process (spec/keys :req [::agents ::last-name ::email]
+                         :opt [::phone]))
+(defrecord process )

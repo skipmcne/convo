@@ -1,6 +1,7 @@
 (ns convo.engine
  "engine-handles simloop... Player hooks TBD"
   (:require [engine.action :as action]
+  			[clojure.spec.alpha :as spec]
   			[engine.narrator :as narrator]
   			[engine.executor :as executor]
   			[engine.agent :as agent]
@@ -33,6 +34,11 @@
 ;
 ;;;;;;
 
+
+;(defn function [state]
+;  (let [new-state (do-something state)]
+;    (function new-state)))
+
 (loop [iter (int 1) facts practices actions agents narration]
 	(if (> iter Scene.limit)
 		(Narrator.endScene)
@@ -42,7 +48,8 @@
 (defn stepSim [facts practices actions agents narration]
 	(let [actions  		 (processProvideActions practices facts)
 		  chosen_actions (agentChooseAction agents actions)
-	      newFacts 		 (performActions actions facts)
+
+	      newFacts 	  	 (performActions actions facts)
 	      updated_agents (observeActions agents newFacts)]
 	(narrator.narrate [actions chosen_actions newFacts updated_agents]))
 	;return newFacts practices actions agents narration

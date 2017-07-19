@@ -1,4 +1,4 @@
-(ns convo.engine.fact
- "fact"
+(ns convo.engine.narrator
+ "narrator"
   (:require [clojure.spec.alpha :as spec])
  )

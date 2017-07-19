@@ -1,14 +1,14 @@
 (ns convo.engine.emotions
  "emotions"
- (:require [clojure.spec.alpha :as s])
+  (:require [clojure.spec.alpha :as spec])
  )
 
 ;; emotional state of a character contains :
 
-(s/def ::emotions #{:amusement :contempt :contentment :embarrassment :excitement :guilt :pride :relief :satisfaction :pleasure :shame})
-(s/def ::pos-int-lt100 (s/and int? #(> % 0) #(< % 101)))
+(spec/def ::emotions #{:amusement :contempt :contentment :embarrassment :excitement :guilt :pride :relief :satisfaction :pleasure :shame})
+(spec/def ::pos-int-lt100 (spec/and int? #(> % 0) #(< % 101)))
 ;(s/def ::emotion { :emotions :pos-int-lt100})
-(s/def ::emotion (s/keys :req [::emotions ::pos-intlt100]))
+(spec/def ::emotion (spec/keys :req [::emotions ::pos-intlt100]))
 ; Contempt,
 ; Contentment,
 ; Embarrassment,

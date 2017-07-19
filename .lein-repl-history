@@ -1,38 +1,3 @@
-source main
-s
-source convo.core.main
-ls
-(require '[clojure.spec.alpha :as s])
-exit
-(require '[clojure.spec.alpha :as s])
-(s/def ::agent)
-(s/def ::agent string?)
-(s/def ::agents (s/keys :req[::agent])
-)
-(s/valid? ::agent {"robert"}0
-)
-(s/valid? ::agent {"robert"})
-(s/valid? ::agent {:name "robert"})
-(s/valid? ::agent {:id :robert :name "robert"})
-(s/def amusement int?)
-(s/def ::emotions #{:amusement :contempt :contentment :embarrassment :excitement :guilt :pride :relief :satisfaction :pleasure :shame})
-(s/def ::emotion { :emotions :pos-int-lt100})
-(s/conform ::emotion {:amusement 30}
-)
-(s/valid ::emotions :amusement}
-(s/valid ::emotions :amusement)
-(s/valid? ::emotions :amusement)
-(s/valid? ::pos-int-lt100 :amusement)
-(s/def :pos-int-lt100 (s/and int? #(> % 0) #(< % 101)))
-(s/def :pos-int (s/and int? #(> % 0)))
-(s/def ::pos-int-lt100 (s/and int? #(> % 0) #(< % 101)))
-(s/conform ::emotion {:amusement 30}
-)
-(s/def ::emotion #{ ::emotions ::pos-int-lt100})
-(s/conform ::emotion {:amusement 30}
-)
-(s/conform ::emotion {:amusement 30})
-(s/explain (s/conform ::emotion {:amusement 30}))
 (s/explain ::emotion {:amusement 30})
 (s/explain ::emotions :amusement)
 (s/explain ::pos-int-lt100 30)
@@ -74,3 +39,462 @@ name
 (name)
 (let name tom)
 (let name "tom")
+(s/def ::first-name string?)
+(s/def ::last-name string?)
+(s/def ::agent (s/keys :req [::first-name ::last-name]
+                        :opt [::phone]))
+(:require [clojure.spec.alpha :as s])
+(require '[clojure.spec.alpha :as s])
+(s/def ::firstName string?)
+(s/def ::lastName string?)
+(s/def ::actor (s/keys  :req [::actorId ::firstName ::lastName]
+                        ;:opt [::phone]
+                        ))
+(defmacro say [actor stmt]
+println actor.first-name " says " stmt
+)
+(defmacro say [actor stmt]
+(println actor.firstName " says " stmt)
+)
+(s/valid ::person {::actorId :elonMusk ::firstName "Elon" ::lastName "Musk"})
+(s/valid? ::person {::actorId :elonMusk ::firstName "Elon" ::lastName "Musk"})
+(s/valid? ::actor {::actorId :elonMusk ::firstName "Elon" ::lastName "Musk"})
+(let char1 {::actorId :elonMusk ::firstName "Elon" ::lastName "Musk"})
+(let [char1 {::actorId :elonMusk ::firstName "Elon" ::lastName "Musk"}])
+char1
+let [char1 {::actorId :elonMusk ::firstName "Elon" ::lastName "Musk"}]
+(def char1 {::actorId :elonMusk ::firstName "Elon" ::lastName "Musk"})
+char1
+(::firstName char1)
+(defmacro say [actor stmt]
+(println (::firstName actor) " says " stmt)
+)
+(say char1 "hello")
+(defmacro say [actor stmt]
+(println (::firstName ~actor) " says " ~stmt)
+)
+(defmacro say [actor stmt]
+(println (::firstName ~actor) " says " ~stmt)
+)
+(macroexpand (say char1 "hello"))
+(say char1 "hello")
+(defmacro say [actor stmt]
+(println (::firstName actor) " says " stmt)
+)
+(say char1 "hello")
+(macroexpand (say char1 "hello"))
+(macroexpand say
+)
+(macroexpand '(say char1 "hello"))
+(defmacro say [actor stmt]
+'(println (::firstName ~actor) " says " ~stmt)
+)
+(macroexpand '(say char1 "hello"))
+(say char1 "hello")
+(defmacro say [actor stmt]
+'(println (::firstName actor) " says " stmt)
+)
+(macroexpand '(say char1 "hello"))
+(defmacro say [actor stmt]
+'(println (::firstName @actor) " says " @stmt)
+)
+(macroexpand '(say char1 "hello"))
+(macroexpand (say char1 "hello"))
+(say char1 "hello")
+(macroexpand (say char1 "hello"))(defmacro say [stmt]
+('println (stmt)
+)(defmacro say [stmt]
+('println (stmt)
+)(defmacro say [stmt]
+('println (stmt)
+(defmacro say [stmt]
+('println (stmt)
+)
+(macroexpand (say "hello"))
+(macroexpand '(say "hello"))
+(defmacro say [stmt]
+('println ('stmt))
+)
+(macroexpand '(say "hello"))
+( (say "hello"))
+(defmacro say [character stmt]
+('println (::firstName @actor) " says " 'stmt)
+)
+)(defmacro say [character stmt]
+('println (::firstName @character) " says " 'stmt)
+)
+(defmacro say [character stmt]
+('println (::firstName @character) " says " 'stmt)
+)
+( (say "hello"))
+( (say char1 "hello"))
+(say char1 "hello")
+(macroexpand '(say "hello"))
+(macroexpand '(say char1 "hello"))
+(macroexpand '(say @char1 "hello"))
+(macroexpand '(say @char1 @"hello"))
+(macroexpand '(say char1 "hello"))
+(defn say [character stmt]
+(println (::firstName character) " says " stmt)
+)
+(say char1 "hello")
+(defn say [character stmt]
+(println (::firstName character) "said" stmt)
+)
+(:firstname char1)
+char1
+(:firstName char1)
+(get :firstName char1)
+(get char1)
+explain get
+(get char1 :firstName)
+(:firstName char1)
+(def char2 {:actorId :robertPaulson :firstName "Robert" :lsastName "Paulson"})
+(:firstName char2)
+(:firstName char1)
+char1
+char2
+(macroexpand '(say char2 "hello"))
+((say char2 "hello"))
+(defn say [character stmt]
+(println (get character :firstName) "said" stmt)
+)
+((say char2 "hello"))
+(say char2 "hello")
+(def DCRoll []
+(rand-int 20)
+)
+DCRoll
+(defn DCRoll 
+(rand-int 20)
+)
+ns convo.engine.agent
+(ns convo.engine.agent)
+(spec/def ::firstName string?)
+(spec/def ::lastName string?)
+(spec/def ::stmt string?)
+(spec/def ::topic string?) ;; easiest for now, need to make discoverable
+(spec/def ::fact string?) ;; easiest for now, figure out detail (how to use in sentences) later
+(spec/def ::people )
+(spec/def ::people :req [::topic ::fact ::stmt]) ;multiple
+(spec/def ::belief :req [::topic ::fact ::stmt]) ;multiple
+(spec/def ::things :req [::topic ::fact ::stmt])
+(spec/def ::knowlege :req [::people ::things]) ; map??
+;; initial at the moment split from above... for reasons?
+(spec/def ::localKnowlege :req [::topic ::fact ::stmt]) ; map??
+(spec/def ::localNPC :req [::topic ::fact ::stmt]) ; map??
+;; 
+(spec/def ::dex int?)
+(spec/def ::str int?)
+(spec/def ::con int?)
+(spec/def ::int int?)
+(spec/def ::wis int?)
+(spec/def ::cha int?)
+(spec/def ::abilities :req [::str ::dex ::con ::int ::wis ::cha])
+;;
+(spec/def ::arcana int?)
+(spec/def ::stealth int?)
+(spec/def ::history int?)
+(spec/def ::culture int?)
+(spec/def ::skills    :req [::arcana ::stealth ::history ::culture ])
+;;
+(spec/def ::phy int?)
+(spec/def ::mag int?)
+(spec/def ::env int?)
+(spec/def ::defenses  :req [::phy ::mag ::env])
+;;
+(spec/def ::daze int?)
+(spec/def ::blind int?)
+(spec/def ::prone int?)
+(spec/def ::disad int?)
+(spec/def ::diseased int?)
+(spec/def ::negStatus :req [::dazed ::diseased ::disad ::prone ::blind])
+;;
+(spec/def ::aid int?)
+(spec/def ::bless int?)
+(spec/def ::benStatus :req [::aid ::bless ])
+;(spec/def ::saves :req [::phy ::mag ::env])
+(spec/def ::actor (spec/keys
+ :req [::actorId ::firstName ::lastName ::abilities ::skills ::defenses ::negStatus ::benStatus]
+ :opt [::localNPC ::localKnowlege ::knowlege ]
+  ))
+(ns convo.engine.agent
+ "agent / actor / character"
+  (:require [clojure.spec.alpha :as spec])
+ )
+(spec/def ::firstName string?)
+(spec/def ::lastName string?)
+(spec/def ::stmt string?)
+(spec/def ::topic string?) ;; easiest for now, need to make discoverable
+(spec/def ::fact string?) ;; easiest for now, figure out detail (how to use in sentences) later
+(spec/def ::people )
+(spec/def ::people :req [::topic ::fact ::stmt]) ;multiple
+(spec/def ::belief :req [::topic ::fact ::stmt]) ;multiple
+(spec/def ::things :req [::topic ::fact ::stmt])
+(spec/def ::knowlege :req [::people ::things]) ; map??
+;; initial at the moment split from above... for reasons?
+(spec/def ::localKnowlege :req [::topic ::fact ::stmt]) ; map??
+(spec/def ::localNPC :req [::topic ::fact ::stmt]) ; map??
+;; 
+(spec/def ::dex int?)
+(spec/def ::str int?)
+(spec/def ::con int?)
+(spec/def ::int int?)
+(spec/def ::wis int?)
+(spec/def ::cha int?)
+(spec/def ::abilities :req [::str ::dex ::con ::int ::wis ::cha])
+;;
+(spec/def ::arcana int?)
+(spec/def ::stealth int?)
+(spec/def ::history int?)
+(spec/def ::culture int?)
+(spec/def ::skills    :req [::arcana ::stealth ::history ::culture ])
+;;
+(spec/def ::phy int?)
+(spec/def ::mag int?)
+(spec/def ::env int?)
+(spec/def ::defenses  :req [::phy ::mag ::env])
+;;
+(spec/def ::daze int?)
+(spec/def ::blind int?)
+(spec/def ::prone int?)
+(spec/def ::disad int?)
+(spec/def ::diseased int?)
+(spec/def ::negStatus :req [::dazed ::diseased ::disad ::prone ::blind])
+;;
+(spec/def ::aid int?)
+(spec/def ::bless int?)
+(spec/def ::benStatus :req [::aid ::bless ])
+;(spec/def ::saves :req [::phy ::mag ::env])
+(spec/def ::actor (spec/keys
+ :req [::actorId ::firstName ::lastName ::abilities ::skills ::defenses ::negStatus ::benStatus]
+ :opt [::localNPC ::localKnowlege ::knowlege ]
+  ))
+(spec/def ::firstName string?)
+(spec/def ::lastName string?)
+(spec/def ::stmt string?)
+(spec/def ::topic string?) ;; easiest for now, need to make discoverable
+(spec/def ::fact string?) ;; easiest for now, figure out detail (how to use in sentences) later
+(spec/def ::people )
+(spec/def ::people (spec/keys :req [::topic ::fact ::stmt])) ;multiple
+(spec/def ::things (spec/keys :req [::topic ::fact ::stmt]))
+(spec/def ::knowlege (spec/keys :req [::people ::things])) ; map??
+(spec/def ::belief (spec/keys :req [::topic ::fact ::stmt])) ;multiple
+;; initial at the moment split from above... for reasons?
+(spec/def ::localKnowlege (spec/keys :req [::topic ::fact ::stmt])) ; map??
+(spec/def ::localNPC (spec/keys :req [::topic ::fact ::stmt])) ; map??
+;; 
+(spec/def ::dex int?)
+(spec/def ::str int?)
+(spec/def ::con int?)
+(spec/def ::int int?)
+(spec/def ::wis int?)
+(spec/def ::cha int?)
+(spec/def ::abilities (spec/keys :req [::str ::dex ::con ::int ::wis ::cha]))
+;;
+(spec/def ::arcana int?)
+(spec/def ::stealth int?)
+(spec/def ::history int?)
+(spec/def ::culture int?)
+(spec/def ::skills    (spec/keys :req [::arcana ::stealth ::history ::culture ]))
+;;
+(spec/def ::phy int?)
+(spec/def ::mag int?)
+(spec/def ::env int?)
+(spec/def ::defenses  (spec/keys :req [::phy ::mag ::env]))
+;;
+(spec/def ::daze int?)
+(spec/def ::blind int?)
+(spec/def ::prone int?)
+(spec/def ::disad int?)
+(spec/def ::diseased int?)
+(spec/def ::negStatus (spec/keys :req [::dazed ::diseased ::disad ::prone ::blind]))
+;;
+(spec/def ::aid int?)
+(spec/def ::bless int?)
+(spec/def ::benStatus (spec/keys :req [::aid ::bless ]))
+;(spec/def ::saves :req [::phy ::mag ::env])
+;;
+(spec/def ::emotions #{:amusement :contempt :contentment :embarrassment :excitement :guilt :pride :relief :satisfaction :pleasure :shame}))
+(spec/def ::amt int?)
+(spec/def ::emotion (spec/keys :req [::emotions ::amt]))
+(spec/def ::actor (spec/keys
+ :req [::actorId ::firstName ::lastName ::abilities ::skills ::defenses ::negStatus ::benStatus]
+ :opt [::localNPC ::localKnowlege ::knowlege ]
+  ))
+clc
+clear
+(spec/def ::topic id?)
+(spec/def ::topic keyword?)
+(spec/valid? topic :monestary)
+(spec/valid? ::topic :monestary)
+(spec/valid? ::fact "haunted")
+(spec/valid? ::stmt "the monestart is haunted")
+(spec/valid? ::belief {::topic :monestary ::fact "haunted" ::stmt "the monestary is haunted})
+(spec/valid? ::belief {::topic :monestary ::fact "haunted" ::stmt "the monestary is haunted"})
+(def b1 {::topic :monestary ::fact "haunted" ::stmt "the monestary is haunted"})
+spec/valid? ::belief b1
+(spec/valid? ::belief b1)
+(defn addBelief [topicId factCategory statement]
+(let [b1 {::topic topicId ::fact factCategory ::stmt statement}]
+(if (spec/valid? ::belief b1)
+b1
+nil
+)))
+(addBelief :monestary "haunted" "the Monestary is Haunted")
+(addBelief :monestary "haunted" 1)
+(spec/def ::firstName string?)
+(spec/def ::lastName string?)
+(spec/def ::topic keyword?) ;; easiest for now, need to make discoverable
+(spec/def ::fact string?) ;; easiest for now, figure out detail (how to use in sentences) later
+(spec/def ::stmt string?)
+(spec/def ::confidence int?)
+(spec/def ::belief (spec/keys :req [::topic ::fact ::stmt ::confidence])) ;multiple
+;(spec/def ::things (spec/keys :req [::topic ::fact ::stmt ::confidence]))
+;; initial at the moment split from above... for reasons?
+;(spec/def ::people (spec/keys :req [::topic ::fact ::stmt ::confidence])) ;multiple
+;(spec/def ::localNPC (spec/keys :req [::topic ::fact ::stmt ::confidence])) ; map??
+;(spec/def ::localKnowlege (spec/keys :req [::topic ::fact ::stmt ::confidence])) ; map??
+(spec/def ::knowlege (spec/keys :req [::people ::things ])) ; map??
+;; 
+(spec/def ::dex int?)
+(spec/def ::str int?)
+(spec/def ::con int?)
+(spec/def ::int int?)
+(spec/def ::wis int?)
+(spec/def ::cha int?)
+(spec/def ::abilities (spec/keys :req [::str ::dex ::con ::int ::wis ::cha]))
+;;
+(spec/def ::arcana int?)
+(spec/def ::stealth int?)
+(spec/def ::history int?)
+(spec/def ::culture int?)
+(spec/def ::skills    (spec/keys :req [::arcana ::stealth ::history ::culture ]))
+;;
+(spec/def ::phy int?)
+(spec/def ::mag int?)
+(spec/def ::env int?)
+(spec/def ::defenses  (spec/keys :req [::phy ::mag ::env]))
+;;
+(spec/def ::daze int?)
+(spec/def ::blind int?)
+(spec/def ::prone int?)
+(spec/def ::disad int?)
+(spec/def ::diseased int?)
+(spec/def ::negStatus (spec/keys :req [::dazed ::diseased ::disad ::prone ::blind]))
+;;
+(spec/def ::aid int?)
+(spec/def ::bless int?)
+(spec/def ::benStatus (spec/keys :req [::aid ::bless ]))
+;(spec/def ::saves :req [::phy ::mag ::env])
+;;
+(spec/def ::emotions #{:amusement :contempt :contentment :embarrassment :excitement :guilt :pride :relief :satisfaction :pleasure :shame}))
+(spec/def ::amt int?)
+(spec/def ::emotion (spec/keys :req [::emotions ::amt]))
+(spec/def ::actor (spec/keys
+ :req [::actorId ::firstName ::lastName ::abilities ::skills ::defenses ::negStatus ::benStatus]
+ :opt [::localNPC ::localKnowlege ::knowlege ]
+  ))
+(defn defBelief [topicId factCategory statement conf]
+(let [b1 {::topic topicId ::fact factCategory ::stmt statement ::confidence conf}]
+(if (spec/valid? ::belief b1)
+b1
+nil
+)))
+(spec/def ::emotions #{:amusement :contempt :contentment :embarrassment :excitement :guilt :pride :relief :satisfaction :pleasure :shame})
+(spec/def ::amt int?)
+(spec/def ::emotion (spec/keys :req [::emotions ::amt]))
+(spec/def ::actor (spec/keys
+ :req [::actorId ::firstName ::lastName ::abilities ::skills ::defenses ::negStatus ::benStatus]
+ :opt [::localNPC ::localKnowlege ::knowlege ]
+  ))
+(addBelief :monestary "haunted" "the Monestary is Haunted" 80)
+(defBelief :monestary "haunted" "the Monestary is Haunted" 80)
+(defBelief :monestary "location" "the StoneWard Monestary is outside town" 90)
+def b2 (defBelief :monestary "location" "the StoneWard Monestary is outside town" 90)
+(def b2 (defBelief :monestary "location" "the StoneWard Monestary is outside town" 90))
+(def b1 (defBelief :monestary "haunted" "the Monestary is Haunted" 80))
+(def kb {})
+(merge kb b1)
+(spec/valid? belief kb)
+(spec/valid? ::belief kb)
+(spec/valid? ::belief b1)
+(merge kb b2)
+kb
+(merge b1 b2)
+b1
+b2
+(add kb b1)
+(put kb b1)
+kb
+explain kb
+def kb {b1 b2}
+kb
+(def kb {b1 b2})
+kb
+(first kb)
+(spec/valid? ::belief (first kb)
+)
+(car kb)
+(def kb ())
+(def kb (b1 b2)))
+(def kb (b1 b2))
+first kb
+(first kb)
+kb
+(def kb [b1 b2])
+(first kb)
+(spec/valid? ::belief (first kb)
+)
+(spec/def ::beliefs [::belief])
+(spec valid? ::beliefs kb)
+(spec/valid? ::beliefs kb)
+(spec/valid? ::belief kb)
+(spec/valid? ::beliefs [b1])
+(spec/explain? ::beliefs )
+(spec/describe? ::beliefs )
+(spec/describe ::beliefs )
+(spec/describe ::belief )
+(spec/describe kb )
+(spec/explain-data kb )
+(spec/explain spec/def )
+(spec/explain `spec/def )
+k
+kb
+(spec/conform (spec/coll-of belief?) kb)
+(spec/conform (spec/coll-of ::belief) kb)
+(spec/conform (spec/coll-of ::belief) (kb))
+(spec/conform (spec/coll-of ::belief) {b1 b2})
+(spec/conform (spec/coll-of ::belief) [b1 b2])
+(spec/def ::kbelief (spec/keys :req [::topic ::fact ::stmt ::confidence])) 
+(spec/def ::kthing  (spec/keys :req [::topic ::fact ::stmt ::confidence]))
+(spec/def ::kperson (spec/keys :req [::topic ::fact ::stmt ::confidence])) 
+(spec/def ::kbeliefs (spec/coll-of [::kbelief]))
+(spec/def ::kthings  (spec/coll-of [::kthing]))
+(spec/def ::kpeople  (spec/coll-of [::kperson]))
+(defn defBelief [topicId factCategory statement conf]
+(let [b1 {::topic topicId ::fact factCategory ::stmt statement ::confidence conf}]
+(if (spec/valid? ::kbelief b1)
+b1
+nil
+)))
+(def b2 (defBelief :monestary "location" "the StoneWard Monestary is outside town" 90))
+(def b1 (defBelief :monestary "haunted" "the Monestary is Haunted" 80))
+(def kb [])
+(cons kb b1)
+kb
+(add kb b1)
+(merge kb b1)
+(put kb b1)
+( kb b1)
+( kb 1 b1)
+( kb 0 b1)
+( kb)
+ kb
+([kb b1])
+(kb  [kb b1])
+(def kb  [kb b1])
+kb
+(def kb [(rest kb) b1])
+kb
+exit

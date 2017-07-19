@@ -46,7 +46,7 @@
 
 (ns convo.engine.practice
  "practice"
- (:require [clojure.spec.alpha :as s])
+ (:require [clojure.spec.alpha :as spec])
  (:require [convo.engine.agent :as agent])
  )
 ;;;;;;;
@@ -54,11 +54,11 @@
 (defn getActions [practice fact])
 
 
-(s/def ::agents (s/keys :req [::agent/agent])
-(s/def ::action)
-(s/def ::preonditiions)
+(spec/def ::agents (spec/keys :req [::agent/agent])
+(spec/def ::action)
+(spec/def ::preonditiions)
 
 
-(s/def ::process (s/keys :req [::agents ::last-name ::email]
+(spec/def ::process (spec/keys :req [::agents ::last-name ::email]
                          :opt [::phone]))
 (defrecord process )

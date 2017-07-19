@@ -1,6 +1,7 @@
 (ns convo.engine
  "engine-handles simloop... Player hooks TBD"
   (:require [engine.action :as action]
+  			[clojure.spec.alpha :as spec]
   			[engine.narrator :as narrator]
   			[engine.executor :as executor]
   			[engine.agent :as agent]

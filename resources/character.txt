@@ -9,5 +9,10 @@
 ; appropriately, even if the two characters have not explicitly been coded to interact with one 
 ; another.
 
-;Character files contain information about what the character hopes to achieve and how he might respond to blockages or problems along the way. Some characters need to make money, or marry well. Some like to make friends, or have some long-standing self-image issue that is preventing their happiness. These arc elements can be satisfied in a variety of ways: for instance, a character who needs to increase her income might stumble across a chest of gold in an adventure plot, or marry a rich man in a high-society plot. 
+;Character files contain information about what the character hopes to achieve and how he might respond to blockages or problems along the way.
+ Some characters need to make money, or marry well.
+  Some like to make friends, or have some long-standing self-image issue that is preventing their happiness.
+   These arc elements can be satisfied in a variety of ways: for instance,
+    a character who needs to increase her income might stumble across a chest of gold in an adventure plot, 
+    or marry a rich man in a high-society plot. 
 

@@ -3,8 +3,8 @@
   (:require [clojure.spec.alpha :as spec])
  );narrator
 
-
-(defn narrate [actions facts actors]
+			  [actions chosen_actions newFacts updated_agents]
+(defn narrate [av_actions perf_actions facts actors]
 	; given a set of 'new' actions 
 	; and a "narration style" pick the items to say
 	; then emit lines (including dialog / facts / actor internals (

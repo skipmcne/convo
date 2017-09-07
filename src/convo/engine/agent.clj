@@ -72,6 +72,7 @@
 			)))
 ;(def b2 (defBelief :monestary "location" "the StoneWard Monestary is outside town" 90))
 ;(def b1 (defBelief :monestary "haunted" "the Monestary is Haunted" 80))
+;(def b1 (defBelief :person1 "favorable" "they are nice enoug" 80))
 
 (defn addknowledgePerson [kb topicId factCategory statement conf]
 	(let [kp (defBelief topic factCategory statement conf)]
